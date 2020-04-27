@@ -560,8 +560,13 @@
 2019	Apr 14 - (N1GP) Fixed an issue with Mic Boost (and others) in TLV320_SPI
 			 - Changed FW version number to v1.8
 
-2019	Apr 16 - (N1GP) Adjusted phy timing to fix Thetis T->R crashes issues (need to dig in to why this happens)
+2019	Dec 1 - (N1GP) Moved the LED clock to CLK_25MHZ, added 'set_clock_groups -exclusive -group' for various clocks
 			 - Changed FW version number to v1.9
+
+2020	Jan 4 - (N1GP) Fixed DHCP issue where a dhcp transaction not bound for the local MAC would get passed up and interfere
+			 with ongoing network traffic. Passed dhcp_enable down to udp_recv.v so the request was only considered when enabled.
+			 Changed bias_ctrl to atu_ctrl for future ATU and enforced that TR relay was disabled if PA_Enable was set to disable.
+			 - Changed FW version number to v2.0
 */
 
 module Orion(
@@ -674,7 +679,7 @@ module Orion(
   input  SW1,							//bootloader mode switch option
   output DRIVER_PA_EN,
   output CTRL_TRSW,		
-  output bias_ctrl,					//controls pin 10 of J16 (BUFF_OUT) via U20 and FPGA pin AH30 (BUFF_OUT_FPGA) for 7000DLE support
+  output atu_ctrl,					//controls pin 10 of J16 (BUFF_OUT) via U20 and FPGA pin AH30 (BUFF_OUT_FPGA) for 7000DLE support
 
   //user digital inputs
   input  IO4,                    
@@ -751,7 +756,7 @@ assign PGA_2 = 0;
 assign SHDN = 1'b0;				   		// normal LTC2208 operation
 assign SHDN_2 = 1'b0;
 
-assign bias_ctrl = 1'b0;					// low turns on bias for PA on 7000DLE
+assign atu_ctrl = run ? AUTO_TUNE : 1'b0;		// high turns on auto-tune for 7/8000DLE
 
 assign NCONFIG = IP_write_done || reset_FPGA;
 
@@ -770,7 +775,7 @@ parameter M_TPD   = 4;
 parameter IF_TPD  = 2;
 
 localparam board_type = 8'h05;		  	// 00 for Metis, 01 for Hermes, 02 for Griffin, 03 for Angelia, and 05 for Orion
-parameter  Orion_version = 8'd19;			// FPGA code version
+parameter  Orion_version = 8'd20;			// FPGA code version
 parameter  protocol_version = 8'd38;	// openHPSDR protocol version implemented
 
 //--------------------------------------------------------------
@@ -818,7 +823,7 @@ end
 //---------------------------------------------------------
 
 wire C122_clk = LTC2208_122MHz;
-wire C122_clk_2 = LTC2208_122MHz_2;
+//wire C122_clk_2 = LTC2208_122MHz_2;
 wire CLRCLK;
 assign CLRCIN  = CLRCLK;
 assign CLRCOUT = CLRCLK;
@@ -1376,7 +1381,7 @@ begin
 
         62:
         begin
-            if (CW_PTT && (sidetone_level != 0))
+            if (CW_PTT && sidetone)
             begin
                 if (break_in)
                 begin
@@ -2010,6 +2015,9 @@ assign XVTR_ENABLE = DLE_outputs[0];
 // enable AF Amp
 assign IO1 = DLE_outputs[1];				// low to enable, high to mute
 
+// enable Auto-Tune
+assign AUTO_TUNE = DLE_outputs[2];			// high to enable auto-tune
+
 			
 // if break_in is selected then CW_PTT can activate the FPGA_PTT. 
 // if break_in is slected then CW_PTT can generate RF otherwise PC_PTT must be active.	
@@ -2017,7 +2025,7 @@ assign IO1 = DLE_outputs[1];				// low to enable, high to mute
 assign FPGA_PTT = debounce_IO5 && ((break_in && CW_PTT) || PC_PTT); // CW_PTT is used when internal CW is selected
 
 // clear TR relay and Open Collectors if run not set 
-wire [47:0]runsafe_Alex_data 		  = {Alex_data[47:44], run ? (FPGA_PTT | Alex_data[43]) : 1'b0, Alex_data[42:0]};
+wire [47:0]runsafe_Alex_data = {Alex_data[47:44], run ? ((PA_enable ? FPGA_PTT : 1'b0) | Alex_data[43]) : 1'b0, Alex_data[42:0]};
 
 Tx_specific_CC #(1026)Tx_specific_CC_inst //   // parameter is port number  ***** this data is in rx_clock domain *****
 			( 	
@@ -2317,12 +2325,10 @@ parameter clock_speed = 12_288_000; // 12.288MHz clock
 `endif
 
 //Flash Heart beat LED
-reg [26:0]HB_counter;
-always @(posedge PHY_CLK125) HB_counter <= HB_counter + 1'b1;
-assign Status_LED = HB_counter[25];  // Blink
+reg [24:0]HB_counter;
+always @(posedge CLK_25MHZ) HB_counter <= HB_counter + 1'b1;
+assign Status_LED = HB_counter[23];  // Blink
 
 
 endmodule 
-
-
 

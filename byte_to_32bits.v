@@ -64,7 +64,7 @@ always @(posedge clock)
 begin
 case (main)
 	IDLE:
-	begin 
+	begin
 		if (udp_rx_active && run && to_port == port) begin
 			temp_Audio_sequence_number[31:24] <= udp_rx_data;
 			byte_counter <= 0;

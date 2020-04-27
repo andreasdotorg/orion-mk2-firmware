@@ -129,7 +129,6 @@ reg dhcp_tx_enable;
 reg [17:0] dhcp_renew_timer;  // holds number of seconds before DHCP IP address must be renewed
 reg [3:0] dhcp_seconds_timer;   // number of seconds since the DHCP request started
 
-
 //reset all child modules
 wire rx_reset, tx_reset;
 sync sync_inst1(.clock(rx_clock), .sig_in(state <= ST_PHY_SETTLE), .sig_out(rx_reset));  
@@ -529,6 +528,7 @@ udp_recv udp_recv_inst(
 	.rx_enable(udp_rx_enable),
 	.data(rx_data),
 	.to_ip(to_ip),
+	.dhcp_enable(dhcp_enable),
    .local_ip(local_ip),
    .broadcast(broadcast),
 	.remote_mac(remote_mac),
@@ -586,7 +586,9 @@ icmp icmp_inst (
 );  
 
 wire dhcp_tx_request;
+
 reg dhcp_enable;
+
 wire [7:0]  dhcp_tx_data;
 wire [15:0] dhcp_tx_length;
 wire [47:0] dhcp_destination_mac;
@@ -600,7 +602,6 @@ wire EPCS_FIFO_enable;
 wire [47:0]remote_mac;
 wire [31:0]remote_ip;
 wire [15:0]remote_port;
-
 
 dhcp dhcp_inst(
   //rx in
@@ -652,11 +653,11 @@ wire [47:0] udp_destination_mac_sync;
 wire [31:0] udp_destination_ip;
 wire [31:0] udp_destination_ip_sync;
 
-cdc_sync #(48)cdc_sync_inst1 (.siga(remote_mac), .rstb(0), .clkb(tx_clock), .sigb(remote_mac_sync)); 
-cdc_sync #(32)cdc_sync_inst2 (.siga(remote_ip), .rstb(0), .clkb(tx_clock), .sigb(remote_ip_sync)); 
-cdc_sync #(32) cdc_sync_inst7 (.siga(udp_destination_ip), .rstb(0), .clkb(tx_clock), .sigb(udp_destination_ip_sync)); 
-cdc_sync #(48) cdc_sync_inst8 (.siga(udp_destination_mac), .rstb(0), .clkb(tx_clock), .sigb(udp_destination_mac_sync)); 
-cdc_sync #(16) cdc_sync_inst9 (.siga(udp_destination_port), .rstb(0), .clkb(tx_clock), .sigb(udp_destination_port_sync)); 
+cdc_sync #(48)cdc_sync_inst1 (.siga(remote_mac), .rstb(1'b0), .clkb(tx_clock), .sigb(remote_mac_sync));
+cdc_sync #(32)cdc_sync_inst2 (.siga(remote_ip), .rstb(1'b0), .clkb(tx_clock), .sigb(remote_ip_sync));
+cdc_sync #(32) cdc_sync_inst7 (.siga(udp_destination_ip), .rstb(1'b0), .clkb(tx_clock), .sigb(udp_destination_ip_sync));
+cdc_sync #(48) cdc_sync_inst8 (.siga(udp_destination_mac), .rstb(1'b0), .clkb(tx_clock), .sigb(udp_destination_mac_sync));
+cdc_sync #(16) cdc_sync_inst9 (.siga(udp_destination_port), .rstb(1'b0), .clkb(tx_clock), .sigb(udp_destination_port_sync));
 
   
 //-----------------------------------------------------------------------------

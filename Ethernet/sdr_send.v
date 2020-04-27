@@ -138,6 +138,8 @@ always @(posedge tx_clock)
           stuck_cnt <= 29'd0;
       end
   end
+  else
+      stuck_cnt <= 29'd0;
 
   case (state)
 		IDLE: 
