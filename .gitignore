@@ -18,3 +18,6 @@ Orion.sta.summary
 datetime.vhd
 db/*
 incremental_db/*
+Orion.qws
+Orion.restore.rpt
+qar_info.json
