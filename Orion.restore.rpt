@@ -1,0 +1,209 @@
+Restore Archived Project report for Orion
+Mon Apr 27 13:38:24 2020
+Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Restore Archived Project Summary
+  3. Restore Archived Project Messages
+  4. Files Restored
+  5. Files Not Restored
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2019  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++-------------------------------------------------------------------------+
+; Restore Archived Project Summary                                        ;
++---------------------------------+---------------------------------------+
+; Restore Archived Project Status ; Successful - Mon Apr 27 13:38:24 2020 ;
+; Revision Name                   ; Orion                                 ;
+; Top-level Entity Name           ; Orion                                 ;
+; Family                          ; Cyclone IV GX                         ;
++---------------------------------+---------------------------------------+
+
+
++-----------------------------------+
+; Restore Archived Project Messages ;
++-----------------------------------+
+Info: Successfully restored '/home/andreas/Orion/Orion_MkII_Protocol_2_v1.9.qar' into the '/home/andreas/Orion/Orion_MkII_Protocol_2/' directory
+Info: Generated report 'Orion.restore.rpt'
+Info (23030): Evaluation of Tcl script /home/andreas/intelFPGA_lite/19.1/quartus/common/tcl/apps/qpm/qar.tcl was successful
+Info: Quartus Prime Shell was successful. 0 errors, 0 warnings
+    Info: Peak virtual memory: 1037 megabytes
+    Info: Processing ended: Mon Apr 27 13:38:24 2020
+    Info: Elapsed time: 00:00:01
+    Info: Total CPU time (on all processors): 00:00:01
+
+
++-------------------------------+
+; Files Restored                ;
++-------------------------------+
+; File Name                     ;
++-------------------------------+
+; qar_info.json                 ;
+; ASMI.qip                      ;
+; ASMI.v                        ;
+; ASMI_interface.v              ;
+; Apollo.v                      ;
+; Attenuator.v                  ;
+; C10_PLL.ppf                   ;
+; C10_PLL.qip                   ;
+; C10_PLL.v                     ;
+; C10_PLL_bb.v                  ;
+; C122_PLL.ppf                  ;
+; C122_PLL.qip                  ;
+; C122_PLL.v                    ;
+; C122_PLL_bb.v                 ;
+; CC_encoder.v                  ;
+; Chain1.cdf                    ;
+; EPCS_fifo.v                   ;
+; EXT_C10_PLL.ppf               ;
+; EXT_C10_PLL.qip               ;
+; EXT_C10_PLL.v                 ;
+; EXT_C10_PLL_bb.v              ;
+; Ethernet/Rx_fifo.v            ;
+; Ethernet/Rx_mux.qip           ;
+; Ethernet/Rx_mux.v             ;
+; Ethernet/Rx_mux_inst.v        ;
+; Ethernet/arp.v                ;
+; Ethernet/crc32.v              ;
+; Ethernet/ddio_in.v            ;
+; Ethernet/ddio_out.v           ;
+; Ethernet/dhcp.v               ;
+; Ethernet/eeprom.v             ;
+; Ethernet/icmp.v               ;
+; Ethernet/icmp_fifo.qip        ;
+; Ethernet/icmp_fifo.v          ;
+; Ethernet/ip_recv.v            ;
+; Ethernet/ip_send.v            ;
+; Ethernet/mac_recv.v           ;
+; Ethernet/mac_send.v           ;
+; Ethernet/mdio.v               ;
+; Ethernet/network.v            ;
+; Ethernet/phy_cfg.v            ;
+; Ethernet/rgmii_recv.v         ;
+; Ethernet/rgmii_send.v         ;
+; Ethernet/sdr_receive.v        ;
+; Ethernet/sdr_send.v           ;
+; Ethernet/send_data.v          ;
+; Ethernet/sync.v               ;
+; Ethernet/udp_recv.v           ;
+; Ethernet/udp_send.v           ;
+; FIFO.v                        ;
+; General_CC.v                  ;
+; High_Priority_CC.v            ;
+; Led_control.v                 ;
+; Led_flash.v                   ;
+; Mic_fifo.qip                  ;
+; Mic_fifo.v                    ;
+; Mic_fifo_ctrl.v               ;
+; Multiply2.qip                 ;
+; Multiply2.v                   ;
+; Mux_clear.v                   ;
+; Orion.qpf                     ;
+; Orion.qsf                     ;
+; Orion.sdc                     ;
+; Orion.v                       ;
+; Orion_ADC.v                   ;
+; Orion_assignment_defaults.qdf ;
+; PHY_fifo.v                    ;
+; PLL_30MHz.ppf                 ;
+; PLL_30MHz.qip                 ;
+; PLL_30MHz.v                   ;
+; PLL_30MHz_bb.v                ;
+; PLL_IF.ppf                    ;
+; PLL_IF.qip                    ;
+; PLL_IF.v                      ;
+; Polyphase_FIR/CicInterpM5.v   ;
+; Polyphase_FIR/firram48.qip    ;
+; Polyphase_FIR/firram48.v      ;
+; Polyphase_FIR/firromHa.qip    ;
+; Polyphase_FIR/firromHa.v      ;
+; Polyphase_FIR/firromHb.qip    ;
+; Polyphase_FIR/firromHb.v      ;
+; Polyphase_FIR/firromHc.qip    ;
+; Polyphase_FIR/firromHc.v      ;
+; Polyphase_FIR/firromHd.qip    ;
+; Polyphase_FIR/firromHd.v      ;
+; Polyphase_FIR/firx2r2.v       ;
+; Rx_Audio_fifo.qip             ;
+; Rx_Audio_fifo.v               ;
+; Rx_fifo_ctrl.v                ;
+; Rx_fifo_ctrl0.v               ;
+; Rx_specific_C&C.v             ;
+; SPI.v                         ;
+; SP_fifo.qip                   ;
+; SP_fifo.v                     ;
+; TLV320_SPI.v                  ;
+; Tx1_IQ_fifo.qip               ;
+; Tx1_IQ_fifo.vhd               ;
+; Tx_specific_C&C.v             ;
+; assignment_defaults.qdf       ;
+; audio_I2S.v                   ;
+; byte_to_32bits.v              ;
+; byte_to_48bits.v              ;
+; cdc_mcp.v                     ;
+; cdc_sync.v                    ;
+; cdc_sync_strobe.v             ;
+; cic.v                         ;
+; cordic.v                      ;
+; cpl_cordic.v                  ;
+; debounce.v                    ;
+; iambic.v                      ;
+; make_datetime.tcl             ;
+; mic_I2S.v                     ;
+; polyphase_fir/coefea.mif      ;
+; polyphase_fir/coefeb.mif      ;
+; polyphase_fir/coeffa.mif      ;
+; polyphase_fir/coeffb.mif      ;
+; profile.mif                   ;
+; profile.v                     ;
+; profile_ROM.qip               ;
+; profile_ROM.v                 ;
+; pulsegen.v                    ;
+; receiver2.v                   ;
+; sidetone.v                    ;
+; sine_256.mif                  ;
+; sine_table_256.qip            ;
+; sine_table_256.v              ;
+; sp_rcv_ctrl.v                 ;
+; tx_atten.mif                  ;
+; tx_atten.v                    ;
+; tx_dac.mif                    ;
+; tx_dac.v                      ;
+; tx_pll.ppf                    ;
+; tx_pll.qip                    ;
+; tx_pll.v                      ;
+; tx_pll_bb.v                   ;
++-------------------------------+
+
+
++--------------------+
+; Files Not Restored ;
++--------------------+
+; File Name          ;
++--------------------+
+
+
