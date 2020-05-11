@@ -29,6 +29,6 @@ jobs:
     # Runs a set of commands using the runners shell
     - name: Install Quartus Lite
       run: |
-        git clone https://github.com/CTSRD-CHERI/quartus-install.git
+        git clone https://github.com/andreasdotorg/quartus-install.git
         cd quartus-install
-        ./quartus-install.py --nosetup 18.1lite $GITHUB_WORKSPACE c4
+        ./quartus-install.py --nosetup 19.1lite $GITHUB_WORKSPACE c4
