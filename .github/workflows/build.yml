@@ -31,11 +31,11 @@ jobs:
       with:
         name: Orion-Firmware
         path: Orion.rbf
-    - name: Upload build report
-      uses: actions/upload-artifact@v1
-      with:
-        name: Orion-Report
-        path: Orion.*.*
+#    - name: Upload build report
+#      uses: actions/upload-artifact@v1
+#      with:
+#        name: Orion-Report
+#        path: Orion.*.*
     - name: Upload release
       uses: skx/github-action-publish-binaries@master
       env:
