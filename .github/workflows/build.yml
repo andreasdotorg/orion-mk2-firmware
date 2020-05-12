@@ -31,10 +31,5 @@ jobs:
       with:
         name: Orion-Firmware
         path: Orion.rbf
-    - name: Upload build report
-      uses: actions/upload-artifact@v1
-      with:
-        name: Orion-Report
-        path: Orion.*.rpt
 
           
