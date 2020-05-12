@@ -27,13 +27,13 @@ jobs:
         quartus_asm Orion
         quartus_sta Orion
     - name: Upload build results
-        uses: actions/upload-artifact@v1
-        with:
-          name: Orion-Firmware
-          path: Orion.rbf
+      uses: actions/upload-artifact@v1
+      with:
+        name: Orion-Firmware
+        path: Orion.rbf
     - name: Upload build report
-        uses: actions/upload-artifact@v1
-        with:
-          name: Orion-Report
-          path: Orion.*.rpt Orion.*.smsg Orion.*.summary 
+      uses: actions/upload-artifact@v1
+      with:
+        name: Orion-Report
+        path: Orion.*.rpt Orion.*.smsg Orion.*.summary 
           
