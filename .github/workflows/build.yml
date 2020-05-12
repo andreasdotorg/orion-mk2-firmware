@@ -21,9 +21,19 @@ jobs:
     - name: Building Orion firmware
       run: |
         cd $GITHUB_WORKSPACE
-        ls -lR
         export PATH=$GITHUB_WORKSPACE/quartus/bin:$PATH
         quartus_map Orion
         quartus_fit Orion
         quartus_asm Orion
         quartus_sta Orion
+    - name: Upload build results
+        uses: actions/upload-artifact@v1
+        with:
+          name: Orion-Firmware
+          path: Orion.rbf
+    - name: Upload build report
+        uses: actions/upload-artifact@v1
+        with:
+          name: Orion-Report
+          path: Orion.*.rpt Orion.*.smsg Orion.*.summary 
+          
