@@ -21,6 +21,7 @@ jobs:
     - name: Building Orion firmware
       run: |
         cd $GITHUB_WORKSPACE
+        ls -lR
         export PATH=$GITHUB_WORKSPACE/intelFPGA_lite/19.1/quartus/bin:$PATH
         quartus_map Orion
         quartus_fit Orion
